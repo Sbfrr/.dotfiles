@@ -8,7 +8,7 @@ set softtabstop=2                        " Indent by 2 spaces when hitting tab
 set shiftwidth=2                         " Indent by 2 spaces when using >
 set tabstop=4                            " Show existing tab with 4 spaces width
 set expandtab                            " On pressing tab, insert 4 spaces
-set nowrap                               " Don't wrap lines
+"set nowrap                               " Don't wrap lines
 set linebreak                            " Wrapp lines at convenient point, avoid in the mid of word
 
 set scrolloff=3                          " Number of screen lines to keep under the cursor
@@ -28,6 +28,8 @@ set confirm                              " Display confirmation dialog when clos
 filetype plugin indent on                " Smart auto indenting for files
 set autoindent                           " New lines inherit indentation of previous line
 set autoread                             " Automatically re-read files if unmodified inside vim
+match ErrorMsg '\s\+$'                   " Highlight trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e       " Remove trailing whitespaces automatically
 
 set number                               " Enable line numbers
 set cursorline                           " Highlight cursor line
@@ -47,6 +49,11 @@ set hlsearch                             " Highlight searches by default
 set ignorecase                           " Ignore case when searching...
 set smartcase                            " ... unless you type a capital
 
+nnoremap <C-H> <C-W><C-H>                " Use Ctrl-h instead of Ctrl-w then h to move through panes
+nnoremap <C-J> <C-W><C-J>                " Use Ctrl-j instead of Ctrl-w then j to move through panes
+nnoremap <C-K> <C-W><C-K>                " Use Ctrl-k instead of Ctrl-w then k to move through panes
+nnoremap <C-L> <C-W><C-L>                " Use Ctrl-l instead of Ctrl-w then l to move through panes
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -55,13 +62,13 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"Plug 'git@github.com:scrooloose/nerdtree.git'
-"Plug 'git@github.com:airblade/vim-gitgutter.git'
+Plug 'https://github.com/tpope/vim-endwise'                         " Close code blocks with end automatically
+Plug 'jiangmiao/auto-pairs'                                         " Close brackets automatically
+Plug 'https://github.com/ervandew/supertab'                         " Enhance auto completion
+Plug 'jremmen/vim-ripgrep'                                          " Enhance vimgrep
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " Enhance search through project files
+Plug 'junegunn/fzf.vim'
+
+
 
 call plug#end()
-
-"let NERDTreeShowHidden = 1
-"let NERDTreeMinimalUI = 1
-"let NERDTreeDirArrows = 1
-"map <C-n> :NERDTreeToggle<CR>
-
