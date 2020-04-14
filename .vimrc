@@ -3,12 +3,12 @@ set encoding=utf-8                       " Supports unicode
 set visualbell
 set noerrorbells
 
-set backspace=indent,eol,start           " Allow backspacing over indentation, line breaks, insertion
+set backspace=indent,eol,start           " Allow backspacing over indentation, line breaks, insertion,utf
 set softtabstop=2                        " Indent by 2 spaces when hitting tab
 set shiftwidth=2                         " Indent by 2 spaces when using >
 set tabstop=4                            " Show existing tab with 4 spaces width
 set expandtab                            " On pressing tab, insert 4 spaces
-"set nowrap                               " Don't wrap lines
+"set nowrap                              " Don't wrap lines
 set linebreak                            " Wrapp lines at convenient point, avoid in the mid of word
 
 set scrolloff=3                          " Number of screen lines to keep under the cursor
@@ -16,7 +16,8 @@ set sidescrolloff=5                      " Number of screen libes to keep on the
 
 syntax on                                " Enable syntax highlighting
 syntax enable
-set background=light
+
+set background=light                     " Set theme to solarized light
 colorscheme solarized
 
 set directory=$HOME/.vim/tmp//           " Set directory for swap file
@@ -53,6 +54,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Leader>rg :Rg<Space>
 nnoremap <Leader>RG :Rg!<Space>
 nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <Leader>u :UndotreeToggle<cr>
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -60,19 +62,31 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+let g:UltiSnipsExpandTrigger="<tab>"                                " Trigger configuration.
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'pearofducks/ansible-vim'                                      " Add ansible syntaxt to vim
-Plug 'vim-ruby/vim-ruby'
+Plug 'pearofducks/ansible-vim'                                        " Add ansible syntaxt to vim
+Plug 'vim-ruby/vim-ruby'                                              " Omni and syntax for ruby
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}  " Preview of mardkdown files
+
+Plug 'vim-airline/vim-airline'                                        " Theme for vim status line
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'                                           " Using same colourfor vim & tmux
+Plug 'christoomey/vim-tmux-navigator'                                 " Navigater Seamlessly between vim and tmux
 
-Plug 'ervandew/supertab'                                            " Enhance auto completion
-Plug 'jremmen/vim-ripgrep'                                          " Enhance vimgrep
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " Enhance search through project files
+Plug 'ervandew/supertab'                                              " Enhance auto completion
+Plug 'ludovicchabant/vim-gutentags'                                   " Auto generation of ctags
+Plug 'SirVer/ultisnips'                                               " Track the engine.
+Plug 'honza/vim-snippets'                                             " Snippets are separated from the engine. Add this if you want them:
+Plug 'tpope/vim-vinegar'                                              " Enhance Nerdtree
+
+Plug 'jremmen/vim-ripgrep'                                            " Enhance vimgrep
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+

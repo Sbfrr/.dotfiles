@@ -10,6 +10,9 @@ export TMUX_PLUGIN_MANAGER_PATH="/home/seb/.tmux/plugins"
 # Set editor for tmuxinator
 export EDITOR="vim"
 
+# Use ripgrep as fzf search engine
+export FZF_DEFAUKT_COMMAND='rg --files'
+
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
@@ -34,7 +37,7 @@ export UPDATE_ZSH_DAYS=13
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
