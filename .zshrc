@@ -59,6 +59,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias dotf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias txor='/home/seb/.asdf/shims/tmuxinator'
+alias o='xdg-open $1'
 
 . $HOME/.asdf/asdf.sh
 

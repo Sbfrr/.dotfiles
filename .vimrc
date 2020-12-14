@@ -70,6 +70,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'pearofducks/ansible-vim'                                        " Add ansible syntaxt to vim
 Plug 'vim-ruby/vim-ruby'                                              " Omni and syntax for ruby
+Plug 'leafgarland/typescript-vim'                                     " Omni and syntax for typescript
 
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}  " Preview of mardkdown files
 
